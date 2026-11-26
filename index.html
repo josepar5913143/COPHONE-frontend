@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2349e8" />
+    <title>COPHONE · Tu próximo celular empieza aquí</title>
+    <meta
+      name="description"
+      content="Compara celulares y pide una cotización por WhatsApp con COPHONE."
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self' file:;
+        style-src 'self' file: 'unsafe-inline'; img-src 'self' file: data:;
+        font-src 'self' file:; connect-src 'none'; form-action 'none'; base-uri 'none'"
+    />
+    <link rel="icon" href="assets/cophone.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="java.js" defer></script>
+  </head>
+  <body>
+    <!-- Cabecera y navegación -->
+    <div class="top-bar">
+      Elige tu próximo celular y coordina tu pedido por WhatsApp.
+    </div>
+    <header class="header">
+      <div class="header-inner">
+        <a
+          class="wordmark"
+          href="#/inicio"
+          data-action="home"
+          aria-label="COPHONE inicio"
+        >
+          <span class="logo-mark" aria-hidden="true">c</span>cophone<span
+            class="logo-dot"
+            >.</span
+          >
+        </a>
+        <label class="header-search">
+          <span data-icon="buscar" aria-hidden="true"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="m21 21-4.34-4.34"></path>
+              <circle cx="11" cy="11" r="8"></circle></svg
+          ></span>
+          <input
+            id="buscar"
+            type="search"
+            placeholder="Busca tu próximo celular…"
+            aria-label="Buscar celulares"
+          />
+        </label>
+        <div class="header-actions">
+          <button
+            class="saved-button"
+            type="button"
+            data-action="favorites"
+            aria-label="Favoritos"
+            aria-pressed="false"
+          >
+            <span class="control-icon" data-icon="corazon" aria-hidden="true"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"
+                ></path></svg
+            ></span>
+            <span class="control-label">Favoritos</span><b id="favorite-count">0</b>
+          </button>
+          <button
+            class="bag-button"
+            type="button"
+            data-action="bag"
+            aria-label="Mi pedido"
+          >
+            <span class="control-icon" data-icon="bolsa" aria-hidden="true"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                <path d="M3.103 6.034h17.794"></path>
+                <path
+                  d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"
+                ></path></svg
+            ></span>
+            <span class="control-label">Mi pedido</span><b id="bag-count">0</b>
+          </button>
+        </div>
+      </div>
+      <nav id="brand-nav" class="store-nav" aria-label="Marcas">
+        <button type="button" data-brand="Todas">Todos los celulares</button>
+        <button type="button" data-brand="Apple">Apple</button>
+        <button type="button" data-brand="Samsung">Samsung</button>
+        <button type="button" data-brand="Xiaomi">Xiaomi</button>
+        <button type="button" data-brand="POCO">POCO</button>
+        <button type="button" data-brand="Google">Google</button>
+        <button type="button" data-brand="Motorola">Motorola</button>
+        <a href="#como-pedir">Cómo comprar</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Portada -->
+      <section id="portada" class="shop-intro" aria-labelledby="hero-title">
+        <div class="hero-store">
+          <div class="hero-store-copy">
+            <span class="intro-tag">Tu próxima gran conexión</span>
+            <h1 id="hero-title">Un nuevo celular.<br />Más posibilidades.</h1>
+            <p>Compara características y cotiza el equipo que va contigo.</p>
+            <a class="button blue" href="#catalogo" data-action="catalog"
+              >Explorar celulares</a
+            >
+            <span class="hero-trust">Atención y cotizaciones por WhatsApp.</span>
+          </div>
+          <div class="hero-store-image">
+            <span class="hero-orbit" aria-hidden="true"></span>
+            <img
+              src="assets/iphone-16-pro-max.png"
+              width="480"
+              height="320"
+              alt="iPhone 16 Pro en distintos acabados"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Catálogo y filtros. JavaScript completa únicamente los resultados. -->
+      <section class="catalog-section" id="catalogo" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <h2 id="catalog-title" tabindex="-1">Catálogo de celulares</h2>
+        </div>
+        <div class="catalog-toolbar">
+          <label for="storage-filter">Almacenamiento</label>
+          <select id="storage-filter">
+            <option value="">Cualquier capacidad</option>
+            <option value="128">128 GB</option>
+            <option value="256">256 GB</option>
+            <option value="512">512 GB</option>
+          </select>
+          <label for="sort-filter">Ordenar por</label>
+          <select id="sort-filter">
+            <option value="default">Nuestra selección</option>
+            <option value="price">Menor precio</option>
+            <option value="name">Nombre A–Z</option>
+          </select>
+          <button id="reset-filters" class="text-button" type="button">
+            Limpiar filtros
+          </button>
+        </div>
+        <p class="result-line">
+          <span id="catalog-count" aria-live="polite"></span>
+          <span>Precios referenciales en soles. Stock por confirmar.</span>
+        </p>
+        <div class="phone-grid" id="product-grid"></div>
+        <p class="empty" id="catalog-empty" hidden>No hay equipos con esos filtros.</p>
+        <noscript
+          >Activa JavaScript para explorar el catálogo y preparar tu pedido.</noscript
+        >
+      </section>
+
+      <!-- Guía de compra -->
+      <section class="how-section" id="como-pedir" aria-labelledby="how-title">
+        <div class="section-heading"><h2 id="how-title">Cómo comprar</h2></div>
+        <div class="steps">
+          <div>
+            <span>1</span>
+            <h3>Explora y compara</h3>
+            <p>Revisa las fichas y elige los equipos que te interesan.</p>
+          </div>
+          <div>
+            <span>2</span>
+            <h3>Arma tu pedido</h3>
+            <p>Añade los modelos y ajusta las cantidades.</p>
+          </div>
+          <div>
+            <span>3</span>
+            <h3>Abre WhatsApp</h3>
+            <p>Revisa el mensaje preparado y envíalo cuando esté listo.</p>
+          </div>
+        </div>
+        <div class="help-strip">
+          <div>
+            <h3>¿No sabes cuál elegir?</h3>
+            <p>Cuéntanos qué buscas y consulta las opciones disponibles.</p>
+          </div>
+          <a
+            class="button outline"
+            data-wa="Hola COPHONE, quisiera asesoría para elegir un celular."
+            target="_blank"
+            rel="noopener noreferrer"
+            >Consultar por WhatsApp</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- Pie y contenedores para la bolsa, las fichas y los avisos -->
+    <footer>
+      <div class="footer-main">
+        <div>
+          <a class="wordmark" href="#/inicio" data-action="home">cophone.</a>
+          <p>Tecnología para tu próxima conexión.</p>
+        </div>
+        <div>
+          <strong>Explora</strong>
+          <a href="#catalogo" data-action="catalog">Todos los celulares</a>
+          <button type="button" data-action="favorites">Mis favoritos</button>
+        </div>
+        <div>
+          <strong>Te ayudamos</strong>
+          <a href="#como-pedir">Cómo comprar</a>
+          <button type="button" data-action="policies">Pedidos y privacidad</button>
+        </div>
+        <div>
+          <strong>Conversemos</strong>
+          <a
+            data-wa="Hola COPHONE, quisiera consultar un equipo."
+            target="_blank"
+            rel="noopener noreferrer"
+            >+51 918 172 401</a
+          >
+          <p>Atención y cotizaciones por WhatsApp.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© COPHONE</span
+        ><span>Precio, stock y entrega sujetos a confirmación.</span>
+      </div>
+    </footer>
+    <div id="notice" class="toast" role="status" hidden></div>
+
+    <!-- El navegador gestiona el foco y permite cerrar con Escape. -->
+    <dialog
+      id="product-dialog"
+      class="dialog detail-dialog"
+      aria-labelledby="detail-title"
+    >
+      <button class="close-button" type="button" data-close aria-label="Cerrar ficha">
+        <span data-icon="close" aria-hidden="true"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path></svg
+        ></span>
+      </button>
+      <div class="detail-layout">
+        <div class="detail-image"><img id="detail-image" alt="" /></div>
+        <div class="detail-copy">
+          <span id="detail-brand"></span>
+          <h2 id="detail-title"></h2>
+          <p id="detail-spec"></p>
+          <div class="detail-facts">
+            <div>
+              <small>Almacenamiento</small><strong id="detail-storage"></strong>
+            </div>
+            <div>
+              <small>Cámara principal</small><strong id="detail-camera"></strong>
+            </div>
+            <div><small>Memoria RAM</small><strong id="detail-ram"></strong></div>
+            <div><small>Sistema</small><strong id="detail-os"></strong></div>
+          </div>
+          <ul id="detail-features"></ul>
+          <strong class="detail-price" id="detail-price"></strong>
+          <button class="button blue full" id="detail-add" type="button">
+            Añadir a mi pedido
+            <span data-icon="bolsa" aria-hidden="true"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                <path d="M3.103 6.034h17.794"></path>
+                <path
+                  d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"
+                ></path></svg
+            ></span>
+          </button>
+          <p class="fine" id="detail-notice" role="status">
+            El vendedor te confirmará precio y disponibilidad.
+          </p>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="order-dialog" class="dialog bag-drawer" aria-labelledby="order-title">
+      <button class="close-button" type="button" data-close aria-label="Cerrar pedido">
+        <span data-icon="close" aria-hidden="true"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path></svg
+        ></span>
+      </button>
+      <span class="section-kicker">Tu selección</span>
+      <h2 id="order-title">Mi pedido</h2>
+      <p class="dialog-intro" id="order-count" aria-live="polite"></p>
+      <div class="bag-lines" id="order-lines"></div>
+      <div class="bag-summary" id="order-summary" hidden>
+        <div><span>Total referencial</span><strong id="order-total"></strong></div>
+        <a
+          class="button whatsapp full"
+          id="order-whatsapp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Pedir por WhatsApp
+          <span data-icon="arrow" aria-hidden="true"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M7 7h10v10"></path>
+              <path d="M7 17 17 7"></path></svg
+          ></span>
+        </a>
+        <p class="fine">
+          WhatsApp se abrirá con el mensaje listo. Revísalo y pulsa Enviar.
+        </p>
+      </div>
+      <button class="text-button" type="button" data-close>Seguir explorando</button>
+    </dialog>
+
+    <dialog id="policies-dialog" class="dialog" aria-labelledby="policies-title">
+      <button
+        class="close-button"
+        type="button"
+        data-close
+        aria-label="Cerrar información"
+      >
+        <span data-icon="close" aria-hidden="true"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path></svg
+        ></span>
+      </button>
+      <h2 id="policies-title">Pedidos y privacidad</h2>
+      <div class="policy-text">
+        <h3>Pedidos por WhatsApp</h3>
+        <p>El enlace abre una consulta con tus equipos. Revísala antes de enviarla.</p>
+        <h3>Precios y disponibilidad</h3>
+        <p>Confirma precio, stock y entrega con el vendedor.</p>
+        <h3>Tus datos</h3>
+        <p>Los favoritos y la bolsa se guardan en el navegador.</p>
+      </div>
+    </dialog>
+
+    <!-- Plantilla reutilizable para cada celular del catálogo -->
+    <template id="product-template">
+      <article class="phone-card">
+        <div class="phone-top">
+          <span data-field="brand"></span>
+          <button type="button" class="heart">
+            <span data-icon="corazon" aria-hidden="true"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"
+                ></path></svg
+            ></span>
+          </button>
+        </div>
+        <button type="button" class="phone-image"><img loading="lazy" alt="" /></button>
+        <div class="phone-spec">
+          <span data-field="storage"></span> <span data-field="os"></span>
+        </div>
+        <button type="button" class="phone-name"></button>
+        <p data-field="spec"></p>
+        <div class="phone-bottom">
+          <div>
+            <small>Precio referencial</small><strong data-field="price"></strong>
+          </div>
+          <button type="button" class="add-circle">
+            <span data-icon="plus" aria-hidden="true"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M5 12h14"></path>
+                <path d="M12 5v14"></path></svg
+            ></span>
+          </button>
+        </div>
+      </article>
+    </template>
+
+    <!-- Una fila por cada modelo añadido al pedido. -->
+    <template id="order-line-template">
+      <div class="bag-line">
+        <img alt="" />
+        <div>
+          <strong data-field="name"></strong>
+          <small data-field="storage"></small>
+          <span data-field="price"></span>
+          <div class="quantity">
+            <button type="button" data-quantity="less">
+              <span data-icon="minus" aria-hidden="true"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M5 12h14"></path></svg
+              ></span>
+            </button>
+            <b data-field="qty"></b>
+            <button type="button" data-quantity="more">
+              <span data-icon="plus" aria-hidden="true"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="21"
+                  height="21"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5v14"></path></svg
+              ></span>
+            </button>
+          </div>
+        </div>
+        <button class="remove-line" type="button" data-quantity="remove">
+          <span data-icon="close" aria-hidden="true"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path></svg
+          ></span>
+        </button>
+      </div>
+    </template>
+
+    <!-- Iconos Lucide
+
+
+ISC License
+
+Copyright (c) 2026 Lucide Icons and Contributors
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+—-
+
+The following Lucide icons are derived from the Feather project:
+
+airplay, alert-circle, alert-octagon, alert-triangle, aperture, arrow-down-circle, arrow-down-left, arrow-down-right, arrow-down, arrow-left-circle, arrow-left, arrow-right-circle, arrow-right, arrow-up-circle, arrow-up-left, arrow-up-right, arrow-up, at-sign, calendar, cast, check, chevron-down, chevron-left, chevron-right, chevron-up, chevrons-down, chevrons-left, chevrons-right, chevrons-up, circle, clipboard, clock, code, columns, command, compass, corner-down-left, corner-down-right, corner-left-down, corner-left-up, corner-right-down, corner-right-up, corner-up-left, corner-up-right, crosshair, database, divide-circle, divide-square, dollar-sign, download, external-link, feather, frown, hash, headphones, help-circle, info, italic, key, layout, life-buoy, link-2, link, loader, lock, log-in, log-out, maximize, meh, minimize, minimize-2, minus-circle, minus-square, minus, monitor, moon, more-horizontal, more-vertical, move, music, navigation-2, navigation, octagon, pause-circle, percent, plus-circle, plus-square, plus, power, radio, rss, search, server, share, shopping-bag, sidebar, smartphone, smile, square, table-2, tablet, target, terminal, trash-2, trash, triangle, tv, type, upload, x-circle, x-octagon, x-square, x, zoom-in, zoom-out
+
+The MIT License (MIT) (for the icons listed above)
+
+Copyright (c) 2013-present Cole Bemis
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
+-->
+  </body>
+</html>
